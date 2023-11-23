@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Performance Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <!-- Custom styles -->
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .container {
+        margin-top: 50px;
+      }
+
+      .card {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Student Performance Dashboard</h1>
+
+      <!-- Overall Scores Bar Chart -->
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Overall Scores Bar Chart</div>
+            <div class="card-body">
+              <img
+                class="img-fluid"
+                src="{{ url_for('overall_chart', overall_chart=overall_chart) }}"
+                alt="Overall Scores Bar Chart"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Exams Scores Bar Chart</div>
+            <div class="card-body">
+              <img
+                src="{{ url_for('exams_chart', exams_chart=exams_chart) }}"
+                class="img-fluid"
+                alt="Exam Scores Bar Chart"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Score Metrics Bar Charts -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Assignment Scores Bar Chart</div>
+            <div class="card-body">
+              <img
+                src="{{ url_for('assignments_chart', assignments_chart=assignments_chart) }}"
+                class="img-fluid"
+                alt="Assignment Scores Bar Chart"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Practical Scores Bar Chart</div>
+            <div class="card-body">
+              <img
+                src="{{ url_for('practical_chart', practical_chart=practical_chart) }}"
+                class="img-fluid"
+                alt="Practical Scores Bar Chart"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Attendance Scores Bar Chart</div>
+            <div class="card-body">
+              <img
+                src="{{ url_for('attendance_chart', attendance_chart=attendance_chart) }}"
+                class="img-fluid"
+                alt="Attendance Scores Bar Chart"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Test Scores Bar Chart</div>
+            <div class="card-body">
+              <img
+                src="{{ url_for('test_chart', test_chart=test_chart) }}"
+                class="img-fluid"
+                alt="Test Scores Bar Chart"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add similar card structures for other score metrics -->
+
+      <!-- Students Table -->
+      <div class="card">
+        <div class="card-header">Students Table</div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+
+                <th>Exams Score</th>
+                <th>Practical Score</th>
+                <th>Attendance Score</th>
+                <th>Test Score</th>
+                <th>Assignments Score</th>
+                <th>Overall Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for student in students %}
+              <tr>
+                <td>{{ student.id }}</td>
+
+                <td>{{ student.exams }}</td>
+                <td>{{ student.practical }}</td>
+                <td>{{ student.att }}</td>
+                <td>{{ student.test }}</td>
+                <td>{{ student.assg }}</td>
+                <td>{{ student.overall_score }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, if you need Bootstrap components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

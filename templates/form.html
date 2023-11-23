@@ -1,0 +1,46 @@
+<!-- form.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Grades</title>
+  </head>
+  <body>
+    <h1>Student Grades</h1>
+
+    <!-- Form for submitting grades for a student -->
+    <form action="{{ url_for('submit_grades') }}" method="post">
+      <h3>Submit Grades</h3>
+      <label for="existing_student">Select or Create Student:</label>
+      <select name="existing_student">
+        <option value="">Create New Student</option>
+        {% for student in students %}
+        <option value="{{ student.id }}">{{ student.matric_number }}</option>
+        {% endfor %}
+      </select>
+      <br />
+      <label for="matric_number">Matriculation Number:</label>
+      <input type="text" name="matric_number" />
+      <br />
+      <label for="python">Python Grade:</label>
+      <input type="number" name="python" min="0" max="100" required />
+      <br />
+      <label for="cpp">C++ Grade:</label>
+      <input type="number" name="cpp" min="0" max="100" required />
+      <br />
+      <label for="csharp">C# Grade:</label>
+      <input type="number" name="csharp" min="0" max="100" required />
+      <br />
+      <label for="php">PHP Grade:</label>
+      <input type="number" name="php" min="0" max="100" required />
+      <br />
+      <label for="sql">SQL Grade:</label>
+      <input type="number" name="sql" min="0" max="100" required />
+      <br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
